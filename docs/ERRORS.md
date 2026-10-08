@@ -1,4 +1,4 @@
-# Error reference — 1.0
+# Error reference — 1.1
 
 Codes are displayed in hexadecimal. 00 means no error. APU, CFG/STATUS,
 SD CMD/R1, LBA and ARG/CRC are diagnostic fields; the failure code is
@@ -54,7 +54,7 @@ track changes available without RESET.
 
 ## Legacy codes
 
-These belong to earlier loaders. Normal 1.0 compatibility validation
+These belong to earlier loaders. Normal 1.1 compatibility validation
 reports these rejections as 67.
 
 | Code | Original meaning |
@@ -67,3 +67,16 @@ reports these rejections as 67.
 
 **7E** is test-ROM-only: a sector is missing from the simulated filesystem.
 It is not active in production ROMs.
+
+## APU transfer diagnostics in 1.1
+
+`APU STEP/BYTE` displays the upload phase and last native-IPL byte offset.
+Phases: 00 before upload; 01 IPL-ready wait; 02 DSP program upload; 03 DSP
+start; 04 echo settling; 05 DSP release; 06 low RAM; 07 main RAM; 08 resume
+bootstrap; 09 input-port restore; 0A final controlled-driver acknowledgement.
+
+A known interrupted native-IPL transfer is retried once. Error 52 still reports
+a failure after that bounded retry, or a handshake that cannot safely be
+retried. Error 51 can still occur if the actual APU cannot return to IPL.
+The error cue plays once when the APU can be recovered; an unresponsive APU
+cannot play it. The on-screen diagnostics are drawn before the cue upload.

@@ -1,0 +1,261 @@
+{
+  "version": "1.1",
+  "development_version": "1.3.1-E",
+  "physical_hardware_verified": false,
+  "library": {
+    "hirom": {
+      "total": 1631,
+      "accepted": 677,
+      "rejected": 954,
+      "failed": 0
+    },
+    "lorom": {
+      "total": 1631,
+      "accepted": 677,
+      "rejected": 954,
+      "failed": 0
+    }
+  },
+  "regression": {
+    "hirom": {
+      "startup_switch_credits_checks": 77,
+      "forced_arming_release_checks": 2,
+      "interrupted_IPL_checks": [
+        {
+          "phase": 2,
+          "byte_offset": 83,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 6,
+          "byte_offset": 0,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 6,
+          "byte_offset": 83,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 254,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 255,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 256,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 65278,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    "lorom": {
+      "startup_switch_credits_checks": 77,
+      "forced_arming_release_checks": 2,
+      "interrupted_IPL_checks": [
+        {
+          "phase": 2,
+          "byte_offset": 83,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 6,
+          "byte_offset": 0,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 6,
+          "byte_offset": 83,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 254,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 255,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 256,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        },
+        {
+          "phase": 7,
+          "byte_offset": 65278,
+          "automatic_retry": true,
+          "ARAM_matches": true,
+          "stop_and_reload": true,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "audio": {
+    "hirom": {
+      "comparisons": 18,
+      "seconds_each": 10,
+      "min_envelope_correlation": 0.998519048047759,
+      "min_spectral_correlation": 0.9981515157800706,
+      "RMS_gain_range": [
+        0.9983054799727177,
+        1.0007167764723648
+      ],
+      "passed": true
+    },
+    "lorom": {
+      "comparisons": 18,
+      "seconds_each": 10,
+      "min_envelope_correlation": 0.9983756201798871,
+      "min_spectral_correlation": 0.9981262032161196,
+      "RMS_gain_range": [
+        0.9975105505126388,
+        1.001316223001193
+      ],
+      "passed": true
+    }
+  },
+  "production": [
+    {
+      "rom": "SSPC11H.SMC",
+      "no_SD_expected_error": "10",
+      "startup_frames": 862,
+      "B_retry_without_intro": true,
+      "error_cue_peak": 11568,
+      "error_diagnostics_preserved": true,
+      "passed": true
+    },
+    {
+      "rom": "SSPC11L.SMC",
+      "no_SD_expected_error": "10",
+      "startup_frames": 886,
+      "B_retry_without_intro": true,
+      "error_cue_peak": 11568,
+      "error_diagnostics_preserved": true,
+      "passed": true
+    }
+  ],
+  "error_audio": {
+    "source": "CHORD.WAV",
+    "source_bytes": 24982,
+    "rate": 8000,
+    "channels": 1,
+    "seconds": 1.131,
+    "BRR_bytes": 5094,
+    "duplicated_sample": false,
+    "BRR_SNR_dB": 24.445856758735083
+  },
+  "UI_audio": {
+    "intro": {
+      "stages": [
+        [
+          0,
+          1
+        ],
+        [
+          167,
+          2
+        ],
+        [
+          419,
+          4
+        ],
+        [
+          449,
+          5
+        ],
+        [
+          567,
+          3
+        ],
+        [
+          830,
+          6
+        ],
+        [
+          860,
+          0
+        ]
+      ],
+      "logo_first_visible_frame": 569,
+      "logo_cue_frame": 569,
+      "logo_finished_before_fade": true,
+      "black_frames": 118,
+      "passed": true
+    },
+    "navigation": {
+      "idle_sound": true,
+      "rapid_presses": 140,
+      "maximum_frames_per_press": 6,
+      "retrigger_before_previous_sound_ends": true,
+      "token_wrap": true,
+      "first_last_wrap": true,
+      "mono": true,
+      "mute": true,
+      "single_entry_no_sound": true,
+      "passed": true
+    },
+    "music": {
+      "navigation_audio_suppressed": true,
+      "PCM_correlation_with_no_navigation": 0.9999999999999999,
+      "stop_click_reload": true,
+      "RAM_transfer_verified": true,
+      "passed": true
+    }
+  },
+  "supported_game_entries": 26,
+  "unique_file_hashes": 1610
+}

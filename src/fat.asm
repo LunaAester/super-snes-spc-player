@@ -657,6 +657,7 @@ TooDeep16:
  lda #$33
  jmp FSError
 ActivateFile:
+ stz $1cec
  jsr UISoundRelease
  bcc +
  lda #$53
@@ -667,6 +668,11 @@ ActivateFile:
  jsr StopAPU
  bcc +
  rts
++:
+ jsr APUEnsureIPL
+ bcc +
+ lda #$51
+ jmp FSError
 +:
  ldx $74
  ldy #0

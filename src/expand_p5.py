@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 B=Path(__file__).resolve().parent
 inverse={'bcc':'bcs','bcs':'bcc','beq':'bne','bne':'beq','bmi':'bpl','bpl':'bmi','bvc':'bvs','bvs':'bvc'}
-for name in ('main.asm','ui.asm','hud_meters.asm','controls.asm','auto_drivers.asm','fat.asm','game_apu.asm','intro.asm','loading_progress.asm','ui_sounds.asm','titles.asm','v13.asm'):
+for name in ('main.asm','ui.asm','hud_meters.asm','controls.asm','auto_drivers.asm','fat.asm','game_apu.asm','intro.asm','loading_progress.asm','ui_sounds.asm','titles.asm','v13.asm','apu_recovery.asm','credits.asm'):
  p=B/name;s=p.read_text();counter=0;lines=[]
  for line in s.splitlines():
   m=re.fullmatch(r'(\s*)(bcc|bcs|beq|bne|bmi|bpl|bvc|bvs|bra) ([A-Za-z_]\w*)',line)

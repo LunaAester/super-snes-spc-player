@@ -1,27 +1,17 @@
-# Super SNES SPC Player! 1.0
+# Super SNES SPC Player! Ver.1.1
 
-First public edition of Luna's SNES SPC player, based on the internal v1.3.E
-development build.
+Development version: **1.3.1-E**.
 
-Copy `SSPC10H.SMC` (HiROM FastROM) or `SSPC10L.SMC` (LoROM alternative) to a
-FAT32 microSD and launch it from a cartridge with a compatible Super EverDrive
-V1 SD interface. Keep compatible, uncompressed SPC files in your own folders.
-Both ROMs are 4 MiB, and the player never writes to the card.
+- Fix the UI sound driver's activation/release race and require its ready acknowledgement.
+- Check both AA/BB IPL-ready bytes when acquiring the APU, including warm entry.
+- Recover a known interrupted native IPL upload and retry once. Snapshot preparation happens only once.
+- Preserve safe rejection of unsupported SPCs and navigation without RESET.
+- Add Start+X credits, with B returning while music continues.
+- Update the opening logo and HUD to Ver.1.1; credits show Dev Ver.1.3.1-E.
+- Convert the supplied CHORD.WAV error cue to one 5,094-byte 8 kHz mono BRR sample.
+- Publish game-level compatibility coverage from unchanged original SPCs.
 
-Features include playback and folder controls without RESET, volume and tempo
-controls, supported MONO/STEREO switching, three audio views, eight information
-pages, an English HUD, animated opening and loading progress.
-
-Compatibility is partial: error 67 rejects unsupported drivers or layouts.
-Self-contained C700 exports using the checked driver load directly; exports
-requiring a separate `.700` stream are unsupported. Folder limits are 96 entries
-and 15 levels. No game music collection is included.
-
-The 1.0 binaries have been rebuilt and checked for their version assets, headers,
-checksums, startup and reproducibility. Runtime functionality and the compatibility
-catalog come from the v1.3.E emulator regression. Physical testing of this renamed
-edition on the SNES/cartridge remains required. A PC emulator without the
-cartridge SD interface reaches expected error 10 after the opening.
-
-See README.md / LEEME.md, docs/ERRORS.md / docs/ERRORES.md,
-docs/compatibility.csv, docs/BUILD.md and CREDITS.md in the source package.
+Choose `SSPC11H.SMC` (HiROM FastROM) or `SSPC11L.SMC` (LoROM). The new
+LoROM assets use the correct ROM mirrors rather than the WRAM banks.
+See [validation](docs/VALIDATION.md) and [supported games](docs/SUPPORTED_GAMES.md).
+Physical console validation of this release remains required.

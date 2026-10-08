@@ -189,12 +189,18 @@ GameHookDone:
  rts
 
 GameLoadAPU:
+ stz $1cfb
+ lda #1
+ sta $1cec
  jsr WaitIPL
  bcc +
  lda #$51
  jmp FSError
 +:
+ lda #2
+ sta $1cec
  jsr GamePrepare
+GameUploadPrepared:
  ; Temporary DSP code lives in CPU WRAM; it is replaced by the original RAM later.
  ldx #0
 GameDSPTemplate:
@@ -239,17 +245,21 @@ P5Long_game_apu_9:
  stz $8a
  jsr GameIPLRange
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
+ lda #3
+ sta $1cec
  jsr GameIPLExecute
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
  lda #$55
  jsr WaitAck
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
+ lda #4
+ sta $1cec
  ldx #16
 GameEchoSettle:
  jsr WaitFrame
@@ -257,14 +267,22 @@ GameEchoSettle:
  beq P5Long_game_apu_10
  jmp GameEchoSettle
 P5Long_game_apu_10:
+ lda #5
+ sta $1cec
  lda #$a6
  sta $2140
  jsr WaitIPL
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
  lda #$cc
  sta $186a
+ rep #$20
+ .ACCU 16
+ sep #$20
+ .ACCU 8
+ lda #6
+ sta $1cec
  rep #$20
  .ACCU 16
  lda #$8102
@@ -279,8 +297,14 @@ P5Long_game_apu_10:
  sta $8a
  jsr GameIPLRange
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
+ rep #$20
+ .ACCU 16
+ sep #$20
+ .ACCU 8
+ lda #7
+ sta $1cec
  rep #$20
  .ACCU 16
  lda #$8200
@@ -293,8 +317,14 @@ P5Long_game_apu_10:
  .ACCU 8
  jsr GameIPLRange
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
+ rep #$20
+ .ACCU 16
+ sep #$20
+ .ACCU 8
+ lda #8
+ sta $1cec
  rep #$20
  .ACCU 16
  lda $1862
@@ -303,12 +333,12 @@ P5Long_game_apu_10:
  .ACCU 8
  jsr GameIPLExecute
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
  lda #$55
  jsr WaitAck
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
  ; Restore input ports while the bootstrap holds execution; then release them.
 .IFDEF TESTFS
@@ -334,13 +364,17 @@ GameTestContinue:
  sta $2142
  lda.l $7e81f7
  sta $2143
+ lda #9
+ sta $1cec
  lda #$81
  sta $2140
  lda #$56
  jsr WaitAck
  bcc +
- jmp UploadFailed
+ jmp GameUploadFailed
 +:
+ lda #10
+ sta $1cec
  lda.l $7e81f4
  sta $2140
  lda #$c7
@@ -354,9 +388,31 @@ GameTestContinue:
  jsr ControlSongStarted
  rts
 
+; Retry a known, interrupted native IPL transfer once. The SPC is prepared
+; only once: repeating the preparation would change its saved resume frame.
+GameUploadFailed:
+ lda $1cfa
+ bne P5Long_game_apu_14
+ jmp GameUploadGiveUp
+P5Long_game_apu_14:
+ lda $1cfb
+ beq P5Long_game_apu_15
+ jmp GameUploadGiveUp
+P5Long_game_apu_15:
+ inc $1cfb
+ jsr APUAbortIPL
+ bcc P5Long_game_apu_16
+ jmp GameUploadGiveUp
+P5Long_game_apu_16:
+ jmp GameUploadPrepared
+GameUploadGiveUp:
+ jmp UploadFailed
+
 ; ROM IPL protocol, not the C700 custom packet protocol. The counter for the
 ; next block is last-byte-index + 2 (avoiding zero), as required by the IPL.
 GameIPLRange:
+ lda #1
+ sta $1cfa
  rep #$20
  .ACCU 16
  lda $86
@@ -373,6 +429,9 @@ GameIPLRange:
 +:
  ldy #0
 GameIPLByte:
+ lda #2
+ sta $1cfa
+ sty $1cee
  lda [$88],y
  sta $2141
  tya
@@ -381,6 +440,18 @@ GameIPLByte:
  bcc +
  rts
 +:
+.IFDEF TESTFS
+ ; One-shot transport fault used only by the emulator regression fixture.
+ lda $1894
+ cmp $1cec
+ bne +
+ cpy $1896
+ bne +
+ stz $1894
+ sec
+ rts
++:
+.ENDIF
  iny
  jsr LoadingUploadProgress
  cpy $84
@@ -396,6 +467,7 @@ P5Long_game_apu_13:
  clc
  rts
 GameIPLExecute:
+ stz $1cfa
  rep #$20
  .ACCU 16
  lda $86

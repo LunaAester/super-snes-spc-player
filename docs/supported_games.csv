@@ -1,0 +1,43 @@
+game,tested_unique_snapshots,accepted,rejected,coverage,physical_hardware_verified
+ActRaiser,19,19,0,tested samples accepted,False
+Addams Family Values,16,0,16,unsupported in tested samples,False
+Aero the Acro-Bat,23,23,0,tested samples accepted,False
+Aero the Acro-Bat 2,18,18,0,tested samples accepted,False
+Battle Cars,10,10,0,tested samples accepted,False
+C700 exports (standalone),10,9,1,partial,False
+Chrono Trigger,92,0,92,unsupported in tested samples,False
+Contra III - The Alien Wars,15,0,15,unsupported in tested samples,False
+Donkey Kong Country,29,25,4,partial,False
+Donkey Kong Country 2 - Diddy's Kong Quest,109,44,65,partial,False
+Donkey Kong Country 3 - Dixie Kong's Double Trouble,77,48,29,partial,False
+EarthBound,206,0,206,unsupported in tested samples,False
+Equinox,16,0,16,unsupported in tested samples,False
+F-Zero,17,0,17,unsupported in tested samples,False
+Faceball 2000,11,11,0,tested samples accepted,False
+Final Fantasy VI,82,0,82,unsupported in tested samples,False
+Jissen Pachi Slot Hisshouhou! Classic,18,18,0,tested samples accepted,False
+Jurassic Park Part 2 - The Chaos Continues,16,0,16,unsupported in tested samples,False
+Kirby Super Star  [Kirby's Fun Pak],70,0,70,unsupported in tested samples,False
+Kirby's Avalanche  [Kirby's Ghost Trap],35,35,0,tested samples accepted,False
+Mega Man 7,45,2,43,partial,False
+Mega Man X,35,35,0,tested samples accepted,False
+Mickey Mania - The Timeless Adventures of Mickey Mouse,23,23,0,tested samples accepted,False
+Nosferatu,15,15,0,tested samples accepted,False
+Pac-Man 2 - The New Adventures,72,72,0,tested samples accepted,False
+Pac-in-Time,20,20,0,tested samples accepted,False
+Plok,20,20,0,tested samples accepted,False
+Rock n' Roll Racing,5,5,0,tested samples accepted,False
+Romancing SaGa 2,42,42,0,tested samples accepted,False
+Secret of Mana,69,0,69,unsupported in tested samples,False
+Side Pocket,1,1,0,tested samples accepted,False
+Sparkster,21,21,0,tested samples accepted,False
+Super Castlevania IV,36,0,36,unsupported in tested samples,False
+Super Ghouls'n Ghosts,23,0,23,unsupported in tested samples,False
+Super Mario Kart,52,0,52,unsupported in tested samples,False
+Super Mario World,66,0,66,unsupported in tested samples,False
+Super Metroid,36,0,36,unsupported in tested samples,False
+Super Puyo Puyo Tsuu,16,16,0,tested samples accepted,False
+Super Tetris 3,33,33,0,tested samples accepted,False
+Tetris Attack,52,52,0,tested samples accepted,False
+Toy Story,21,21,0,tested samples accepted,False
+Zero - The Kamikaze Squirrel,18,18,0,tested samples accepted,False

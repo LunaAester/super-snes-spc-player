@@ -1,4 +1,4 @@
-# Lista de errores — 1.0
+# Lista de errores — 1.1
 
 Los códigos se muestran en hexadecimal. 00 significa que no hay error.
 Los valores de APU, CFG/STATUS, SD CMD/R1, LBA y ARG/CRC son datos
@@ -54,7 +54,7 @@ para conservar los controles y cambiar de canción sin RESET.
 
 ## Códigos antiguos
 
-Pertenecen a cargadores anteriores. La validación normal de 1.0 devuelve
+Pertenecen a cargadores anteriores. La validación normal de 1.1 devuelve
 67 para estos rechazos de compatibilidad.
 
 | Código | Significado original |

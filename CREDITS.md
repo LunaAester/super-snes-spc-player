@@ -1,20 +1,30 @@
-# Artwork and audio credits
+# Credits — Public Ver.1.1 / Dev Ver.1.3.1-E
 
-Luna supplied the SUPER SNES PLAYER logo and reference opening. The native
-pixel-art logo retains the red, orange, blue and green SNES lettering; its
-earlier ImageGen raster adaptation and reference are in src. The LUNA PRESENTS
-animation follows the first four seconds of the supplied reference video,
-with the subtitle A SNES PROJECT: https://www.youtube.com/watch?v=Ims5ys6FeZ0
+Project, original SUPER SNES PLAYER drawing, design direction and hardware
+testing: Luna. Development, implementation and test support: ChatGPT.
+
+**Made with ChatGPT support. No generative AI was used to create this edition's
+graphics.*** The 1.1 logo and credits artwork are conventional Pillow
+scaling/palette/tile conversions of Luna's original drawing, included as
+`src/logo_reference.png`. The original animation reference remains
+https://www.youtube.com/watch?v=Ims5ys6FeZ0 with the subtitle A SNES PROJECT.
 Arial Bold Italic was rasterized into native SNES 2bpp tiles.
 
-The HUD font comes from Luna's Mega Man X / Capcom sheet, ripped by QuadFactor.
-The supplied sheet and extraction coordinates are retained in src.
+*This statement describes the graphics shipped in edition 1.1. Earlier editions
+included an ImageGen adaptation of the logo; that adaptation is replaced and is
+not included here. Code and conversion scripts were developed with ChatGPT.
 
-Luna supplied S0000003.NSF_00005.wav, match-start.mp3 and move.ogg. Precompiled
-BRR sounds and their native playback data remain in src; the three auxiliary
-SPCs in audio contain presentation, logo and navigation sounds. The opening
-sound uses 22,050 Hz mono duplicated to both outputs, the logo uses 14 kHz
-stereo, and navigation uses 32 kHz stereo.
+HUD font: Mega Man X / Capcom, sprite sheet ripped by QuadFactor and supplied
+by Luna. The sheet and extraction coordinates remain in src.
 
-Build tooling: WLA-DX 10.7 is an external dependency, not bundled.
-No project-wide license has been selected for this edition.
+Audio supplied by Luna: S0000003.NSF_00005.wav (opening), match-start.mp3
+(logo), move.ogg (idle navigation), and Windows 3.x CHORD.WAV (error cue).
+Precompiled BRR and playback code remain in src. The error cue uses one shared
+8 kHz mono sample (5,094 bytes), played through both output sides.
+
+Validation originals were obtained from Luna's library and Zophar's Domain:
+https://www.zophar.net/music/nintendo-snes-spc . Commercial game SPCs are not
+included in this repository or release archives.
+
+Build tooling: WLA-DX 10.7, an external dependency. No project-wide license has
+been selected for this edition.

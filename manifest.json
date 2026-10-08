@@ -1,54 +1,55 @@
 {
-  "version": "1.0",
-  "development_base": "v1.3.E",
+  "version": "1.1",
+  "development_base": "v1.3.1-E",
   "physical_hardware_verified": false,
-  "runtime_code_unchanged": true,
+  "runtime_code_unchanged": false,
+  "license_selected": false,
   "ROMs": [
     {
-      "rom": "roms/SSPC10H.SMC",
+      "rom": "roms/SSPC11H.SMC",
       "size": 4194304,
       "map_byte": 49,
       "mapping": "HiROM FastROM",
-      "internal_title": "SUPER SPC PLAYER 1.0",
-      "checksum": "CAE2",
-      "SHA256": "b5cf771fa16243008bdd0760586d6366e55274abadfe2f3c2240f76e03540b17",
-      "changes_from_development_bytes": 21,
-      "changed_runtime_code": false,
+      "internal_title": "SUPER SPC PLAYER 1.1",
+      "checksum": "16A2",
+      "SHA256": "08d19d263312ef84cb037e8cc6b6628e587f63169b848f709b72b3ca01064391",
       "no_SD_expected_error": "10",
-      "startup_frames": 834,
+      "startup_frames": 862,
       "B_retry_without_intro": true,
-      "APU_returned_IPL": true,
+      "error_cue_peak": 11568,
+      "error_diagnostics_preserved": true,
       "passed": true
     },
     {
-      "rom": "roms/SSPC10L.SMC",
+      "rom": "roms/SSPC11L.SMC",
       "size": 4194304,
       "map_byte": 32,
       "mapping": "LoROM SlowROM",
-      "internal_title": "SUPER SPC PLAYER 1.0",
-      "checksum": "F0F3",
-      "SHA256": "6ca0e9e2b229027c35ee4959d1f39ec5abfab8c096c4131a854e9b19fd6eeda6",
-      "changes_from_development_bytes": 21,
-      "changed_runtime_code": false,
+      "internal_title": "SUPER SPC PLAYER 1.1",
+      "checksum": "404B",
+      "SHA256": "676568b41ff4fcd2b78988dfeeac8135d9b3e192c1a1c91744b031690116ca64",
       "no_SD_expected_error": "10",
-      "startup_frames": 877,
+      "startup_frames": 886,
       "B_retry_without_intro": true,
-      "APU_returned_IPL": true,
+      "error_cue_peak": 11568,
+      "error_diagnostics_preserved": true,
       "passed": true
     }
   ],
-  "license_selected": false,
-  "inherited_compatibility": {
+  "source_rebuild_exact": true,
+  "compatibility": {
     "hirom": {
-      "total": 1073,
+      "total": 1631,
       "accepted": 677,
-      "rejected": 396
+      "rejected": 954,
+      "failed": 0
     },
-    "lorom_additional": {
-      "total": 516,
-      "accepted": 120,
-      "rejected": 396
+    "lorom": {
+      "total": 1631,
+      "accepted": 677,
+      "rejected": 954,
+      "failed": 0
     }
   },
-  "source_rebuild_exact": true
+  "supported_game_entries": 26
 }

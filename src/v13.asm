@@ -1,4 +1,4 @@
-; 1.0 state: 1D80 clock,82 repeat deadline,84 repeat mask,86 old joy,
+; v1.3.E state: 1D80 clock,82 repeat deadline,84 repeat mask,86 old joy,
 ; 88 info page,89 view,8A trace head,8B DSP pair scan. Cache 1600..167F;
 ; eight signed OUTX rings 1700..17FF. ID666 saved at 7E5000..50FF.
 ; DSP fields are asynchronous register observations, never emulator internals.

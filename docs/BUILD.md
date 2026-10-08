@@ -1,4 +1,4 @@
-# Building 1.0
+# Building 1.1
 
 Production ROMs need Python 3.9 or later and WLA-DX 10.7 (`wla-65816` and
 `wlalink`). No SPC library, Pillow, NumPy or ffmpeg is required for the normal
@@ -17,7 +17,7 @@ If both WLA-DX tools are already on PATH:
 python src/build.py --both
 ```
 
-Output: `roms/SSPC10H.SMC` (HiROM FastROM) and `roms/SSPC10L.SMC` (LoROM).
+Output: `roms/SSPC11H.SMC` (HiROM FastROM) and `roms/SSPC11L.SMC` (LoROM).
 Use `--hirom` to build only HiROM; no mapping option builds only LoROM.
 `--output-dir PATH` places builds elsewhere. Assembly and branch expansion run
 in temporary storage, so builds do not modify the checked-in source files.
@@ -39,7 +39,7 @@ development builds will intentionally fail the published SHA-256 comparison.
 - `*.bin`, `*.BRR`, `*.inc`: native assets, templates and compatibility records.
 
 The `v13` identifiers are retained internally to avoid unrelated code changes.
-The public version is 1.0.
+The public version is 1.1.
 
 ## Optional asset editing
 
@@ -52,3 +52,15 @@ normal build uses those bytes directly.
 New SPC driver support requires its own code, memory, sample and echo checks,
 then audio/control validation. Adding a game's name to the catalog does not add
 support for its driver.
+
+Credits use `credits.asm` and `apu_recovery.asm` implements bounded recovery.
+The LoROM $7e/$7f data blocks use ROM mirrors $fe/$ff, avoiding WRAM.
+
+Optional logo/credits editing: `python src/build_intro_assets.py` (Pillow), then
+`python src/build_credits.py` (Pillow and NumPy). Both use Luna's original
+`logo_reference.png`. Reassemble after changing the precompiled assets.
+
+Optional error-sound editing: `python src/build_error_audio.py CHORD.WAV`
+requires NumPy and ffmpeg. Then assemble/link `effect_error.asm` with WLA-DX's
+SPC700 tools. Original audio is supplied by the project owner, not required for
+the ordinary reproducible ROM build.

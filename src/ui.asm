@@ -592,6 +592,16 @@ P5Long_ui_28:
  jsr PutChar
  lda $1805
  jsr PutHex
+ ldx #$220f
+ stx $2116
+ lda $1cec
+ jsr PutHex
+ lda #$20
+ jsr PutChar
+ lda $1cef
+ jsr PutHex
+ lda $1cee
+ jsr PutHex
  lda #$0f
  sta $2100
  rts

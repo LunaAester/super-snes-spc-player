@@ -24,7 +24,7 @@
 .ENDIF
 .SNESHEADER
  ID "EVDR"
- NAME "SUPER SPC PLAYER 1.0"
+ NAME "SUPER SPC PLAYER 1.1"
  .IFDEF HIROMBUILD
   FASTROM
   HIROM
@@ -145,6 +145,7 @@ P5Long_main_0:
  sep #$20
  .ACCU 8
  jsr InitVideo
+ jsr APUStartup
  jsr RunIntro
  jsr V13Init
 BootMount:
@@ -178,6 +179,23 @@ GameLoop:
  sta $7f
  jsr ReadJoy
  jsr V13Input
+ lda $1ced
+ beq +
+ jmp CreditsLoop
++:
+ rep #$20
+ .ACCU 16
+ lda $70
+ and #$1040
+ cmp #$1040
+ bne +
+ lda $72
+ and #$1040
+ beq +
+ jmp CreditsToggle
++:
+ sep #$20
+ .ACCU 8
  lda $1c4e
  bne P5Long_main_1
  jmp P5Controls
@@ -578,11 +596,13 @@ P5Error:
  lda #1
  sta $1c4e
  jsr DrawError
+ jsr UISoundError
  jmp GameLoop
 Fatal:
  lda #$ff
  sta $7f
  jsr DrawError
+ jsr UISoundError
 FatalLoop:
  jsr WaitFrame
  jsr ReadJoy
@@ -605,6 +625,7 @@ Handler:
 .include "fat.asm"
 .include "ui.asm"
 .include "apu.asm"
+.include "apu_recovery.asm"
 .include "game_apu.asm"
 .include "general_apu.asm"
 .include "controls.asm"
@@ -614,6 +635,7 @@ Handler:
 .include "ui_sounds.asm"
 .include "titles.asm"
 .include "v13.asm"
+.include "credits.asm"
 Signature:
  .db "SNES-SPC700 Sound File Data"
 DriverSignature:

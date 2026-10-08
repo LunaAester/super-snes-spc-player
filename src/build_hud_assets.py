@@ -119,7 +119,7 @@ def screen(lines,boxes=()):
         for r in range(y+1,y+h-1): put(r,x,101,a);put(r,x+w-1,101,a,0x4000)
     box(0,1,30,4)
     text(1,2,'SUPER SNES SPC PLAYER!',1)
-    text(2,2,'V1.0',2);text(2,12,'MICROSD',0);text(2,25,'LUNA',6)
+    text(2,2,'V1.1',2);text(2,12,'MICROSD',0);text(2,25,'LUNA',6)
     for i,a in enumerate((6,1,5,4)): put(1,26+i,112,a)
     for b in boxes: box(*b)
     for row,col,string,attr in lines: text(row,col,string,attr)
@@ -149,7 +149,7 @@ for col in range(3,29):put(12,col,109,7)
 (B/'loading.bin').write_bytes(data)
 data,_,_=screen([(5,3,'UNABLE TO COMPLETE',6),(9,2,'REG CFG/STS:',0),
     (10,2,'APU:',0),(12,2,'SD CMD/R1:',0),(13,2,'LBA:',0),(14,2,'PHASE/RECOV:',0),
-    (15,2,'ARG / CRC:',0),(18,2,'TAKE A FULL SCREEN PHOTO',2),
+    (15,2,'ARG / CRC:',0),(16,2,'APU STEP/BYTE:',0),(18,2,'TAKE A FULL SCREEN PHOTO',2),
     (23,2,'B BACK / RETRY',0)],[(4,1,30,16)])
 (B/'error.bin').write_bytes(data)
 print('HUD: 128 native 2bpp tiles; long titles; 20 stereo LEDs per channel')

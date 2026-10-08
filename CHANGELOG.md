@@ -1,3 +1,7 @@
+# Public 1.1 — Dev 1.3.1-E
+
+See [release notes](RELEASE_NOTES.md) for APU recovery, credits, version labels, error audio and game-level validation.
+
 # Changelog
 
 ## 1.0 — 2026-10-08

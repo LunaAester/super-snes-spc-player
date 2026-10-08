@@ -1,7 +1,7 @@
-# Publicar Super SNES SPC Player! 1.0
+# Publicar Super SNES SPC Player! 1.1
 
 Esta carpeta es la raíz del repositorio preparado. Incluye el código y las dos
-ROM de la edición pública 1.0. Los ZIP se entregan por separado.
+ROM de la edición pública 1.1. Los ZIP se entregan por separado.
 
 ## Repositorio
 
@@ -18,7 +18,7 @@ esta carpeta, reemplaza la URL de ejemplo por la que corresponda a tu cuenta:
 ```sh
 git init
 git add .
-git commit -m "Prepare public release 1.0"
+git commit -m "Prepare public release 1.1"
 git branch -M main
 git remote add origin https://github.com/TU_USUARIO/super-snes-spc-player.git
 git push -u origin main
@@ -29,15 +29,15 @@ carpeta extraída como raíz; no subas la carpeta de trabajo histórica de Codex
 
 ## Release
 
-- Tag: `1.0`.
-- Título: `Super SNES SPC Player! 1.0`.
+- Tag: `1.1`.
+- Título: `Super SNES SPC Player! 1.1`.
 - Texto: copia el contenido de `RELEASE_NOTES.md`.
-- Adjunto para jugadores: `Super_SNES_SPC_Player_1_0_ROMs.zip`.
-- Adjunto opcional con fuentes: `Super_SNES_SPC_Player_1_0_GitHub.zip`.
+- Adjunto para jugadores: `Super_SNES_SPC_Player_1_1_ROMs.zip`.
+- Adjunto opcional con fuentes: `Super_SNES_SPC_Player_1_1_GitHub.zip`.
 
-`VERSION`, el README, el HUD y los títulos internos de las ROM usan 1.0. El
+`VERSION`, el README, el HUD y los títulos internos de las ROM usan 1.1. El
 archivo `manifest.json` identifica los binarios mediante SHA-256. La compatibilidad
-es parcial y se documenta por archivo en `docs/compatibility.csv`.
+es parcial y se documenta por juego y muestras comprobadas en `docs/SUPPORTED_GAMES.md`.
 
 ## Licencia
 

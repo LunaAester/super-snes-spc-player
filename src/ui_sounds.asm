@@ -1,5 +1,5 @@
 .include "ui_audio_defs.inc"
-; $1ce0: resident UI APU; $1ce1: cue sequence; $1ce2: 1 move / 2 logo.
+; $1ce0: resident UI APU; $1ce1: cue sequence; $1ce2: 1 move / 2 logo / 3 error.
 ; The UI APU is always released before loading an ordinary SPC.
 UISoundEnsureMove:
  lda $8f
@@ -54,6 +54,13 @@ P5Long_ui_sounds_6:
 UISoundDescriptorReady:
  lda #4
  sta $1ce8
+ lda $1ce5
+ cmp #3
+ bne +
+ ldx #56
+ lda #3
+ sta $1ce8
++:
 UISoundSegment:
  rep #$20
  .ACCU 16
@@ -93,6 +100,11 @@ P5Long_ui_sounds_9:
  jmp UISoundFailed
 P5Long_ui_sounds_10:
  stz $2140
+ lda #$e2
+ jsr WaitAck
+ bcc +
+ jmp UISoundFailed
++:
  stz $1ce1
  lda $1ce5
  sta $1ce2
@@ -197,6 +209,8 @@ UISoundTokenReady:
 ; IPL byte transfer without progress redraw or a subroutine per audio byte.
 ; Every acknowledgement remains bounded, and the native IPL counter is kept.
 UIIPLRange:
+ lda #1
+ sta $1cfa
  phx
  rep #$20
  .ACCU 16
@@ -214,6 +228,8 @@ UIIPLRange:
 P5Long_ui_sounds_19:
  ldy #0
 UIIPLByte:
+ lda #2
+ sta $1cfa
  lda [$88],y
  sta $2141
  tya
@@ -276,3 +292,50 @@ UIAudioDescriptors:
  .dw LogoAudioDriver
  .db ROMBANK_123
  .dw $0200,512
+
+ .dw ErrorDirectory
+ .db ROMBANK_126
+ .dw $0400,8
+ .dw ErrorSample
+ .db ROMBANK_126
+ .dw $1000,(ErrorSampleEnd-ErrorSample)
+ .dw ErrorDriver
+ .db ROMBANK_126
+ .dw $0200,512
+
+; An error cue never replaces diagnostic data or blocks on an unresponsive APU.
+UISoundError:
+ lda $4d
+ sta $1ce6
+ lda $1cec
+ sta $1ce7
+ lda $8f
+ beq +
+ jsr StopAPU
+ bcc P5Long_ui_sounds_24
+ jmp UISoundErrorDone
+P5Long_ui_sounds_24:
++:
+ jsr UISoundRelease
+ bcc P5Long_ui_sounds_25
+ jmp UISoundErrorDone
+P5Long_ui_sounds_25:
+ jsr APUEnsureIPL
+ bcc P5Long_ui_sounds_26
+ jmp UISoundErrorDone
+P5Long_ui_sounds_26:
+ lda #3
+ jsr UISoundLoad
+ bcc P5Long_ui_sounds_27
+ jmp UISoundErrorDone
+P5Long_ui_sounds_27:
+ lda #80
+ sta $2141
+ stz $2142
+ jsr UISoundCue
+UISoundErrorDone:
+ lda $1ce7
+ sta $1cec
+ lda $1ce6
+ sta $4d
+ rts

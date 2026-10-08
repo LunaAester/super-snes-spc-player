@@ -1,10 +1,10 @@
-# Super SNES SPC Player! 1.0
+# Super SNES SPC Player! 1.1
 
-Edición pública 1.0 de Luna, basada en la versión de desarrollo v1.3.E.
+Edición pública 1.1 de Luna, basada en la versión de desarrollo v1.3.1-E.
 
 ![Vistas del reproductor](media/Preview.png)
 
-Copia **roms/SSPC10H.SMC** (HiROM FastROM) o **roms/SSPC10L.SMC** (alternativa LoROM) a tu microSD FAT32 y abre la ROM desde el menú del cartucho. Ambas ocupan 4 MiB. Conserva tus carpetas: los SPC originales compatibles se cargan directamente, sin conversión ni índice adicional. El reproductor no escribe en la tarjeta.
+Copia **roms/SSPC11H.SMC** (HiROM FastROM) o **roms/SSPC11L.SMC** (alternativa LoROM) a tu microSD FAT32 y abre la ROM desde el menú del cartucho. Ambas ocupan 4 MiB. Conserva tus carpetas: los SPC originales compatibles se cargan directamente, sin conversión ni índice adicional. El reproductor no escribe en la tarjeta.
 
 Requiere un cartucho con una interfaz SD compatible con Super EverDrive V1.
 No todos los flashcarts implementan esa interfaz.
@@ -45,7 +45,7 @@ Las páginas de etiquetas usan ID666. La detección de texto/binario es aproxima
 
 ## Compatibilidad y pruebas
 
-La compatibilidad sigue siendo parcial. El error 67 puede indicar un driver, estado o distribución de memoria todavía no controlable; no significa por sí solo que el SPC esté dañado. B permite regresar. Se conserva el catálogo de compatibilidad comprobado durante el desarrollo; consulta [compatibility.csv](docs/compatibility.csv) para los resultados por archivo.
+La compatibilidad sigue siendo parcial. El error 67 puede indicar un driver, estado o distribución de memoria todavía no controlable; no significa por sí solo que el SPC esté dañado. B permite regresar. Se conserva el catálogo de compatibilidad comprobado durante el desarrollo; consulta [Juegos que ya soporta](docs/SUPPORTED_GAMES.md) para los resultados por archivo.
 
 Las nuevas exportaciones completas de C700 que usan el driver comprobado se cargan directamente. Las exportaciones que necesitan un archivo .700 adicional siguen sin estar admitidas. Los originales no se modifican; la ROM comprueba el espacio de controles, código, muestras y eco antes de preparar una copia temporal en RAM.
 
@@ -71,3 +71,11 @@ Se incluyen los gráficos, sonidos BRR y comprobaciones de drivers ya compilados
 
 No se ha elegido una licencia general para el proyecto. Los créditos de
 los recursos suministrados se conservan en [CREDITS.md](CREDITS.md).
+
+## Cambios de 1.1
+
+- Recuperación acotada de transferencias IPL interrumpidas y confirmación del driver de sonido del menú.
+- Start + X abre los créditos; B vuelve conservando la canción.
+- Logo e interfaz: Ver.1.1. Créditos: Dev Ver.1.3.1-E.
+- Sonido de error CHORD reducido a 5,094 bytes BRR mono.
+- [Juegos que ya soporta y compatibilidad parcial](docs/SUPPORTED_GAMES.md).

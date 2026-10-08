@@ -4,8 +4,7 @@ RunIntro:
  lda #1
  sta $1cda
  jsr IntroVideo
- lda #$aa
- jsr WaitAck
+ jsr APUEnsureIPL
  bcc +
  jmp IntroNoAudio
 +:
@@ -104,8 +103,7 @@ IntroNoAudio:
 P5Long_intro_1:
  lda #$a6
  sta $2140
- lda #$aa
- jsr WaitAck
+ jsr WaitIPL
  bcs P5Long_intro_2
  jmp IntroLogoShow
 P5Long_intro_2:

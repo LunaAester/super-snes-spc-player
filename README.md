@@ -1,17 +1,22 @@
-# Super SNES SPC Player! 1.0
+# Super SNES SPC Player! 1.1
 
-Luna's public 1.0 edition, based on the internal v1.3.E development build.
+Luna's public 1.1 edition, based on the internal v1.3.1-E development build.
 
 [Español](LEEME.md) · [Release notes](RELEASE_NOTES.md)
 
 ![Player views](media/Preview.png)
 
-Copy **roms/SSPC10H.SMC** (HiROM FastROM) or **roms/SSPC10L.SMC** (LoROM fallback) to your FAT32 microSD and launch it from the cartridge menu. Both ROMs are 4 MiB. Keep your existing SPC folders; supported original files load directly without conversion or a companion index. The player never writes to the card.
+Copy **roms/SSPC11H.SMC** (HiROM FastROM) or **roms/SSPC11L.SMC** (LoROM fallback) to your FAT32 microSD and launch it from the cartridge menu. Both ROMs are 4 MiB. Keep your existing SPC folders; supported original files load directly without conversion or a companion index. The player never writes to the card.
 
 Requires a cartridge with a Super EverDrive V1 compatible SD interface.
 Not all flashcarts implement that interface.
 
 ## Features
+
+- Ready acknowledgement fixes the menu-audio activation/release race.
+- A known interrupted IPL transfer can be aborted and retried once, without preparing the snapshot twice.
+- Credits display Public Ver.1.1 and Dev Ver.1.3.1-E alongside Luna's original logo.
+- Error notifications use the supplied chord compressed to one shared 5,094-byte, 8 kHz mono BRR sample.
 
 - Tempo and volume chords work after switching to MONO, including when Select is still held or the direction is pressed before X/Y. Brief presses are latched during audio operations.
 - Donkey Kong Country drivers retain tempo changes through their native timer updates.
@@ -30,6 +35,7 @@ Not all flashcarts implement that interface.
 | L / R | Previous / next song |
 | Y + Left / Right | Tempo, with pitch retained on supported drivers |
 | X + Up / Down | Volume, 0–100% |
+| Start + X | Open / close credits; B also closes them |
 | Select + A | Stop |
 | Select + B | MONO / STEREO, where supported |
 | Select + Start | Stereo LEDs → eight voice bars → DSP traces; return to player view |
@@ -47,7 +53,7 @@ Music/file pages read standard ID666 tags. Text/binary detection is best effort 
 
 ## Compatibility
 
-Compatibility remains partial. A valid SPC can use an unsupported driver, state, or memory layout. Error **67 / UNSUPPORTED SPC / LAYOUT** rejects it before playback; B returns to the browser. The checked development compatibility catalog is retained. See [compatibility.csv](docs/compatibility.csv) for the tested files, rather than assuming every track from a supported game works.
+Compatibility remains partial. A valid SPC can use an unsupported driver, state, or memory layout. Error **67 / UNSUPPORTED SPC / LAYOUT** rejects it before playback; B returns to the browser. See [Supported games](docs/SUPPORTED_GAMES.md) for tested game coverage and partial support. The list describes observed compatibility; adding a name does not change the ROM's driver checks.
 
 Fresh, self-contained C700 exports using the checked driver load directly. Oversized exports requiring a separate .700 stream remain unsupported. The player checks control storage, executable instructions, sample ranges, and echo memory before changing its temporary RAM copy; original SPCs stay unchanged.
 

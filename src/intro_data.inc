@@ -55,3 +55,21 @@ MoveRight:
  .incbin "MOVE_R.BRR"
 MoveRightEnd:
 .ENDS
+
+ROMBLOCK 126,0
+.SECTION "Credits and error audio" FORCE
+CreditsTiles:
+ .incbin "credits_tiles.bin"
+CreditsTilesEnd:
+CreditsMap:
+ .incbin "credits_map.bin"
+CreditsPalette:
+ .incbin "credits_palette.bin"
+ErrorDirectory:
+ .incbin "ERROR_directory.bin"
+ErrorDriver:
+ .incbin "effect_error.bin"
+ErrorSample:
+ .incbin "ERROR.BRR"
+ErrorSampleEnd:
+.ENDS
