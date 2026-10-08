@@ -1,0 +1,34 @@
+[
+  {
+    "rom": "roms/SSPC10H.SMC",
+    "size": 4194304,
+    "map_byte": 49,
+    "mapping": "HiROM FastROM",
+    "internal_title": "SUPER SPC PLAYER 1.0",
+    "checksum": "CAE2",
+    "SHA256": "b5cf771fa16243008bdd0760586d6366e55274abadfe2f3c2240f76e03540b17",
+    "changes_from_development_bytes": 21,
+    "changed_runtime_code": false,
+    "no_SD_expected_error": "10",
+    "startup_frames": 834,
+    "B_retry_without_intro": true,
+    "APU_returned_IPL": true,
+    "passed": true
+  },
+  {
+    "rom": "roms/SSPC10L.SMC",
+    "size": 4194304,
+    "map_byte": 32,
+    "mapping": "LoROM SlowROM",
+    "internal_title": "SUPER SPC PLAYER 1.0",
+    "checksum": "F0F3",
+    "SHA256": "6ca0e9e2b229027c35ee4959d1f39ec5abfab8c096c4131a854e9b19fd6eeda6",
+    "changes_from_development_bytes": 21,
+    "changed_runtime_code": false,
+    "no_SD_expected_error": "10",
+    "startup_frames": 877,
+    "B_retry_without_intro": true,
+    "APU_returned_IPL": true,
+    "passed": true
+  }
+]

@@ -1,0 +1,14 @@
+* text=auto
+*.py text eol=lf
+*.asm text eol=lf
+*.inc text eol=lf
+*.link text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.SMC binary
+*.smc binary
+*.bin binary
+*.BRR binary
+*.png binary
+*.mp4 binary

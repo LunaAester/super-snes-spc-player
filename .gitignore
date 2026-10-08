@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.o
+*.sym
+*.log
+*.state
+*.srm
+*.sav
+.venv/
+.DS_Store
+Thumbs.db
+/build/
+/dist/
+/src/*.smc
+/src/*.SMC
+/src/*.sfc
+# Keep roms/: these are the published 1.0 builds.

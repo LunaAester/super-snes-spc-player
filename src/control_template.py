@@ -1,0 +1,56 @@
+"""Two-port control: F4/F5 inputs retain the original snapshot values.
+F7: 60 stop, 61..64 MVOL/EVOL, 65..67 timer0..2, 68 meter, 69 DSP read, 6A gain.
+F6 carries data/address; output F4=D6 acknowledges until F6/F7 are restored.
+"""
+from pathlib import Path
+import json
+B=Path(__file__).resolve().parent
+c=bytearray();labels={};fix=[]
+def emit(*v):c.extend(v)
+def label(s):labels[s]=len(c)
+def branch(op,s):emit(op,0);fix.append((len(c)-1,s))
+def mov(dp,v):emit(0x8f,v,dp)
+# Bit branches do not alter A/X/Y or flags in the normal playback path.
+for op in (0xe3,0xd3,0xb3,0x83):
+ emit(op,0xf7,0);fix.append((len(c)-1,'fast_tail'))
+emit(0x0d,0x20,0x2d,0x4d)
+emit(0xe4,0xf7,0x68,0x60);branch(0xf0,'stop')
+emit(0xe4,0xf2,0x2d) # save DSP address
+emit(0xe4,0xf7,0x68,0x65);branch(0xb0,'not_dsp')
+emit(0x28,0x0f,0x9c,0x9f,0x08,0x0c,0xc4,0xf2,0xe4,0xf6,0x3f);labels['write_address']=len(c);emit(0,0);branch(0x2f,'ack')
+label('not_dsp')
+emit(0x68,0x68);branch(0xb0,'meter')
+emit(0x60,0x88,0x95,0x5d,0xe4,0xf6,0xc6);branch(0x2f,'ack')
+label('meter')
+emit(0x68,0x6a);branch(0xb0,'gain')
+emit(0xf8,0xf6,0xd8,0xf2,0x68,0x69);branch(0xf0,'read_first')
+emit(0x7d,0x60,0x88,9,0xc4,0xf2)
+label('read_first')
+emit(0xe4,0xf3,0xc4,0xf5)
+emit(0xd8,0xf2,0xe4,0xf3,0xc4,0xf6,0x3d,0xd8,0xf2,0xe4,0xf3,0xc4,0xf7,0x5f);labels['meter_address']=len(c);emit(0,0)
+label('gain')
+emit(0xe4,0xf6,0xc5);labels['gain_address']=len(c);emit(0,0);branch(0x2f,'ack')
+label('ack')
+mov(0xf4,0xd6)
+label('wait_release')
+emit(0xe4,0xf7,0x28,0xf0,0x68,0x60);branch(0xf0,'wait_release')
+emit(0xae,0xc4,0xf2)
+label('normal')
+mov(0xf4,0xc7)
+emit(0xce,0xae,0x8e)
+label('fast_tail')
+mov(0xf4,0xc7)
+label('tail')
+emit(*([0]*16)) # relocated instructions and continuation
+label('stop')
+for dp,v in [(0xf2,0x6c),(0xf3,0x60),(0xf2,0x7d),(0xf3,0),(0xf1,0x80)]:mov(dp,v)
+emit(0x5f,0xc0,0xff)
+for at,s in fix:
+ d=labels[s]-at-1
+ assert -128<=d<=127,(at,s,d)
+ c[at]=d&255
+assert len(c)<=176,len(c)
+(B/'control_hook.bin').write_bytes(c)
+(B/'control_fields.inc').write_text(f'.DEFINE CONTROL_TAIL {labels["tail"]}\n')
+(B/'control_fields.json').write_text(json.dumps(dict(length=len(c),labels=labels),indent=2))
+print('SPC control hook',len(c),'bytes, tail',labels['tail'])
